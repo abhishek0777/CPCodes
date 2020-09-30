@@ -14,13 +14,17 @@ int factInverse[N+1];
 int numInverse[N+1];
 int factorial[N+1];
 
-void invNum(int p)
+void inv(int p)
 {
     numInverse[0]=numInverse[1]=1;
-    for(int i=2;i<=N;i++)
-    {
-        numInverse[i]=numInverse[p%i]*(p-p/i)%p;
-    }
+    for (int i=2; i<=200000; i++)
+		numInverse[i] = (p - (p/i) * numInverse[p%i] % p) % p;
+	
+	for(int i=2;i<=200000;i++)
+	{
+		numInverse[i]*=numInverse[i-1];
+		numInverse[i]%=p;
+	}
 }
 
 void invFact(int p)
