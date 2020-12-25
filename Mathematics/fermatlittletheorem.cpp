@@ -8,7 +8,7 @@
 
     a^(p-1) ≡ 1 (mod p)
     OR
-    a^(p-1) % p = 1
+    a^(p-1) % p = 1 
     Here a is not divisible by p.
 
 
