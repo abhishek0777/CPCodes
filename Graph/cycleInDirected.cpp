@@ -1,73 +1,44 @@
 #include<bits/stdc++.h>
+#define ll long long int
+#define pb push_back
 using namespace std;
+ll V,E;
+vector<bool> used;
+vector<bool> recSt;
 
-void addEdge(vector<int> adj[],int u,int v)
+bool dfs(vector<ll> adj[],ll s)
 {
-    adj[u].push_back(v);
-}
-
-//main DFS recursive fun
-bool DFSRec(vector<int> adj[],int s,int visited[],int recSt[])
-{
-    visited[s]=1;
-    recSt[s]=1;
-    for(auto x : adj[s])
+    used[s]=true;
+    recSt[s]=true;
+    for(ll v:adj[s])
     {
-        if(visited[x]==0)
-        {
-            if(DFSRec(adj,x,visited,recSt)==true)
-            {
-                return true;
-            }
-        }
-        else if(recSt[x]==1)
-        {
-                return true;
-        }
+        if( (!used[v])&&(dfs(adj,v)) )return true;
+        else if(recSt[v])return true;
     }
     recSt[s]=false;
     return false;
 }
 
-bool DFS(vector<int> adj[],int v)
+bool detectCycle(vector<ll> adj[])
 {
-    int visited[v];
-    for(int i=0;i<v;i++)visited[i]=0;
-    int recSt[v];
-    for(int i=0;i<v;i++)recSt[i]=0;
-
-    //this for loop is to manage disconnected graph
-    for(int i=0;i<v;i++)
+    used.assign(V,false);
+    recSt.assign(V,false);
+    for(ll i=0;i<V;i++)
     {
-        if(visited[i]==0)
-        {
-            if(DFSRec(adj,i,visited,recSt)==true)
-            return true;
-        }
-        
+        if( (!used[i])&&(dfs(adj,i)) )return true;
     }
     return false;
-    
-    
 }
-
 int main()
 {
-    int v,e;
-    cin>>v>>e;
-    vector<int> adj[v];
-
-    for(int i=0;i<e;i++)
+    cin>>V>>E;
+    vector<ll> adj[V];
+    for(ll i=0;i<E;i++)
     {
-        int a,b;
-        cin>>a>>b;
-        addEdge(adj,a,b);
+        ll u,v;cin>>u>>v;
+        adj[u].pb(v);
     }
-
-    //DFS
-    //print 1 if cycle else 0
-    cout<<DFS(adj,v);
     
-
-    return 0;
+    if(detectCycle(adj))cout<<"Yes,cycle";
+    else cout<<"No,cycle";
 }

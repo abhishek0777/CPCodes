@@ -9,65 +9,50 @@
 //                            dist[v]=dist[u]+weight[u][v]
 
 #include<bits/stdc++.h>
+#define ll long long int
+#define pb push_back
+#define inf INT_MAX
+#define pii pair<ll,ll>
+#define mp make_pair
 using namespace std;
-
-void addEdge(vector<int> adj[],int u,int v,int indegree[])
+ll V,E;
+vector<ll> dist;
+vector<ll> indeg;
+void topo(vector<pii> adj[])
 {
-    adj[u].push_back(v);
-    indegree[v]++;
+    dist.assign(V,inf);
+    dist[0]=0;
+    queue<ll> q;
+    for(ll i=0;(i<V)&&(indeg[i]==0);i++)q.push(i);
+    while(!q.empty())
+    {
+        ll u=q.front();
+        q.pop();
+        // shortest path
+        for(pii edge:adj[u])
+        {
+            ll v=edge.first;
+            ll w=edge.second;
+            if(dist[v]>dist[u]+w)
+            dist[v]=dist[u]+w;
+            
+            indeg[v]--;
+            if(indeg[v]==0)q.push(v);
+        }
+    }
+    for(ll i=0;i<V;i++)cout<<dist[i]<<" ";
+    
 }
 int main()
 {
-    int v,e;cin>>v>>e;
-    vector<int> adj[v];
-
-    int dist[v];
-    for(int i=0;i<v;i++)dist[i]=10000; //treat 10000 as infinite
-    dist[0]=0;
-    int indegree[v];
-    for(int i=0;i<v;i++)indegree[i]=0;
-
-    int weight[v][v];
-
-    for(int i=0;i<e;i++)
+    cin>>V>>E;
+    vector<pair<ll,ll>> adj[V];
+    indeg.assign(V,0);
+    for(ll i=0;i<E;i++)
     {
-        int u,v;cin>>u>>v;
-        cin>>weight[u][v];
-        addEdge(adj,u,v,indegree);
+        ll u,v,w;cin>>u>>v>>w;
+        adj[u].pb(mp(v,w));
+        indeg[v]++;
     }
-
-    queue<int> q;
-    for(int i=0;i<v;i++)
-    {
-        if(indegree[i]==0)q.push(i);
-    }
-
-    while(!q.empty())
-    {
-        int u=q.front();
-        q.pop();
-
-
-        // here comes shortest path
-        for(auto v:adj[u])
-        {
-            if(dist[v]>dist[u]+weight[u][v]){
-                dist[v]=dist[u]+weight[u][v];
-            }
-        }
-
-
-
-        for(auto v:adj[u])
-        {
-            indegree[v]--;
-            if(indegree[v]==0)q.push(v);
-        }
-    }
-
-
-    for(auto d:dist)
-    {
-        cout<<d<<" ";
-    }
+    topo(adj);
 }

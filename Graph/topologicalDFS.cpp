@@ -1,74 +1,42 @@
-/*
-    ----------------directed acyclic graph-----------
-    Algorithm 
-    1. Create an empty stack st
-    2. For every vertex u,do following
-        if(u is not visited)
-            DFS(u,st,visited)
-    3. while(st is not empty)
-        pop an item from st and print it
-*/
 #include<bits/stdc++.h>
-#include<stack>
+#define ll long long int
+#define pb push_back
 using namespace std;
+ll V,E;
+stack<ll> tsort;
+vector<bool> used;
 
-stack<int> st;
-
-void addEdge(vector<int> adj[],int u,int v)
+void dfs(vector<ll> adj[],ll s)
 {
-    adj[u].push_back(v);   
-}
-
-void DFS(int u,int visited[],vector<int> adj[])
-{
-    visited[u]=1;
-    for(auto v:adj[u])
+    used[s]=true;
+    for(ll v:adj[s])
     {
-        if(visited[v]==0)
-        {
-            DFS(v,visited,adj);
-        }
+        if(!used[v])dfs(adj,v);
     }
-    st.push(u);
+    tsort.push(s);
 }
 
-
+void topo(vector<ll> adj[])
+{
+    used.assign(V,false);
+    for(ll i=0;i<V;i++)
+    {
+        if(!used[i])dfs(adj,i);
+    }
+    while(!tsort.empty())
+    {
+        cout<<tsort.top()<<" ";
+        tsort.pop();
+    }
+}
 int main()
 {
-    int v,e;
-    cin>>v>>e;
-    vector<int> adj[v];
-
-    int indegree[v];
-    for(int i=0;i<v;i++)indegree[i]=0;
-
-    for(int i=0;i<e;i++)
+    cin>>V>>E;
+    vector<ll> adj[V];
+    for(ll i=0;i<E;i++)
     {
-        int a,b;
-        cin>>a>>b;
-        addEdge(adj,a,b);
+        ll u,v;cin>>u>>v;
+        adj[u].pb(v);
     }
-
-   /* 
-        IMPORTANT : stack is initialized globally !
-   */
-   //topological sorting using DFS
-   int visited[v];
-   for(int i=0;i<v;i++)visited[i]=0;
-
-   for(int u=0;u<v;u++)
-   {
-       if(visited[u]==0)
-        {
-            DFS(u,visited,adj);
-        }
-   }
-
-    //print stack
-    while(!st.empty())
-    {
-        cout<<st.top()<<" ";
-        st.pop();
-    }
-    return 0;
+    topo(adj);
 }
