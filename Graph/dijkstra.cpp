@@ -18,64 +18,52 @@
     5 4 10
     0
 */
-
 #include<bits/stdc++.h>
 #define ll long long int
 #define pb push_back
 #define mp make_pair
-#define inf INT_MAX
 #define pii pair<ll,ll>
+#define inf INT_MAX
 using namespace std;
-
 ll V,E;
-void addEdge(vector<pair<ll,ll>> adj[],ll s,ll d,ll w)
-{
-    adj[s].pb(mp(d,w));
-    adj[d].pb(mp(s,w));
-}
 
-void Dijkstra(vector<pii> adj[],ll s)
+void dijkstra(vector<pii> adj[],ll s)
 {
-    ll d[V];
-    for(ll i=0;i<V;i++)d[i]=inf;
-    d[s]=0;
+    vector<ll> dist;
+    dist.assign(V,inf);
+    dist[s]=0;
+    // min heap
     priority_queue<pii,vector<pii>,greater<pii>> pq;
-    pq.push(mp(0,s));
-    
+    pq.push({0,s});
     while(!pq.empty())
     {
-        int u=pq.top().second;
-        int d_u=pq.top().first;
+        ll d_u=pq.top().first;
+        ll from=pq.top().second;
         pq.pop();
-        if(d_u!=d[u])continue;
-        
-        for(pii edge:adj[u])
+        if(dist[from]!=d_u)continue;
+        for(pii edge:adj[from])
         {
             ll to=edge.first;
             ll len=edge.second;
-            if(d[to]>d[u]+len)
+            if(dist[to]>dist[from]+len)
             {
-                d[to]=d[u]+len;
-                pq.push(mp(d[to],to));
+                dist[to]=dist[from]+len;
+                pq.push(mp(dist[to],to));
             }
         }
     }
-    
-    
-    for(ll i=0;i<V;i++)cout<<d[i]<<" ";
-    
+    for(ll d:dist)cout<<d<<" ";
 }
 int main()
 {
     cin>>V>>E;
-    vector<pair<ll,ll>> adj[V];
+    vector<pii> adj[V];
     for(ll i=0;i<E;i++)
     {
-        ll s,d,w;
-        cin>>s>>d>>w;
-        addEdge(adj,s,d,w);
+        ll s,d,w;cin>>s>>d>>w;
+        adj[s].pb(mp(d,w));
+        adj[d].pb(mp(s,w));
     }
-    
-    ll s;cin>>s;
-    Dijkstra(adj,s);
+    // ll s;cin>>s;
+    dijkstra(adj,0);
 }
