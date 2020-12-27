@@ -9,7 +9,10 @@ bool dfs(vector<ll> adj[],bool visited[],ll s,ll p)
     visited[s]=true;
     for(ll v: adj[s])
     {
-        if((!visited[v])&&(dfs(adj,visited,v,s)))return true;
+        if(!visited[v])
+        {
+            if(dfs(adj,visited,v,s)==true){return true;}
+        }
         else if(v!=p)return true;
     }
     return false;
@@ -23,7 +26,7 @@ bool detectCycle(vector<ll> adj[])
     {
         if(!visited[i])
         {
-            if(dfs(adj,visited,i,-1))return true;
+            if(dfs(adj,visited,i,-1)==true){return true;}
         }
     }
     return false;
