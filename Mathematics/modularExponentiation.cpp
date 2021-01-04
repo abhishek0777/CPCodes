@@ -10,15 +10,12 @@ void power(int x,int y,int p)
     {
         while(y>0)
         {
-            if(y&1)res=(res*x)%p;
-
-            y=y>>1;
-            x=(x*x)%p;
+            if(y&1)(res*=x)%=p;
+            y>>=1;
+            (x*=x)%=p;
         }
         cout<<res<<endl;
     }
-    
-
 }
 int main()
 {
