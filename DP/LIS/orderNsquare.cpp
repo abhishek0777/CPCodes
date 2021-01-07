@@ -28,3 +28,16 @@ int main()
     }
     cout<<ans;
 }
+
+ll msis[n];
+ll res=0;
+for(ll i=0;i<n;i++)
+{
+    msis[i]=arr[i];
+    for(ll j=0;j<i;j++)
+    {
+        if(arr[j]<arr[i])
+        msis[i]=max(msis[i],msis[j]+arr[i]);
+    }
+    res=max(res,msis[i]);
+}
