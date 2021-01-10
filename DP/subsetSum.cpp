@@ -12,7 +12,7 @@ bool subsetSum(ll a[],ll sum,ll n)
     bool dp[n][sum+1];
     for(ll i=0;i<n;i++)for(ll j=0;j<=sum;j++)dp[i][j]=false;
     for(ll i=0;i<n;i++)dp[i][0]=true;
-    for(ll j=0;j<=sum;j++){if(j==a[0])dp[0][j]=true;else dp[0][j]=false;}
+    for(ll j=1;j<=sum;j++){if(j==a[0])dp[0][j]=true;else dp[0][j]=false;}
     for(ll i=1;i<n;i++)
     {
         for(ll j=1;j<=sum;j++)

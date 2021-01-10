@@ -26,7 +26,7 @@ ll knapsack(ll W,ll val[],ll w[],ll n)
 
 int main() {
     FAST
-    ll n;cin>>n;
+    ll n;cin>>n; 
     ll val[n],w[n];
     ll W;
     for(ll i=0;i<n;i++)cin>>val[i];
