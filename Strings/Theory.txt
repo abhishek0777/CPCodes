@@ -1,0 +1,60 @@
+1. Two strings are anagrams if they both are permutation of each other
+ex : ebbac   cbabe   =>true
+Solution:
+if(s1.length()!=s2.length())return false;
+for(ll i=0;i<s1.length();i++)count[s1[i]]++;
+for(ll i=0;i<s2.length();i++)count[s2[i]]--;
+for(i=0;i<256;i++)if(count[i]!=0)return false;
+
+2.Given a string,find the leftmost character that repeats
+#IMP : if repeats ,return first index of character
+Test: abcba
+o/p: 0
+int firstRepeating(string str)
+{
+    int res=INT_MAX
+    int FI[256]={-1,-,1-,1....}
+    loop over string
+    {
+        if(FI[str[i]]==-1)FI[str[i]]=i;
+        else res=min(res,FI[str[i]])
+    }
+    cout<<(res==INT_MAX)?-1:res;
+}
+
+3. Given a string ,find the leftmost character index that does not repeats
+int firstNonRepeating(string str)
+{
+    int res=INT_MAX
+    int FI[256]={-1,-1,-1,....}
+    loop over string
+    {
+        if(FI[str[i]]==-1)FI[str[i]]=i;
+        else FI[str[i]]=-2
+    }
+    for(ll i=0;i<256;i++)
+    {
+        if(FI[i]>=0)res=min(res,FI[i]);
+    }
+    return (res==INT_MAX)?-1:res;
+}
+
+4. Given a string find lexicographic rank of int
+I/P : "BAC"
+O/P: 3
+SOlution: 
+ABC
+ACB 
+BAC   <--- 3rd rank 
+BCA 
+CAB 
+CBA 
+#Explanation: Lexicographic rank is a rank when we write all permuation of a given string in the order the come first in ASCII value
+
+5. Given a  text string and pattern string,find if a permutation of the pattern exists in the text
+I/P : txt="geeksforgeeks"
+      pat="egek"
+O/P : YES
+I/P : txt="geeksforgeeks"
+      pat="gks"
+O/p : No
