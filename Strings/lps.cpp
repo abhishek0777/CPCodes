@@ -16,15 +16,15 @@ ll add(ll x,ll y){ll res=x+y; return (res>=MOD?res-MOD:res);}
 ll mul(ll x,ll y){ll res=x*y; return ( res>=MOD?res%MOD:res);}
 ll sub(ll x,ll y){ll res=x-y; return (res<0?res+MOD:res);}
 
-void fillLps(string pat,ll lps[])
+void fillLps(string s,vector<ll> &lps)
 {
-    ll n=pat.length();
+    ll n=s.length();
     ll len=0;
     lps[0]=0;
     ll i=1;
     while(i<n)
     {
-        if(pat[i]==pat[len])
+        if(s[i]==s[len])
         {
             len++;
             lps[i]=len;
@@ -48,35 +48,14 @@ void fillLps(string pat,ll lps[])
 
 void solve()
 {
-    string txt,pat;
-    cin>>txt>>pat;
-    ll n=txt.length();
-    ll m=pat.length();
-    ll lps[m];
-    fillLps(pat,lps);
-
-    ll i=0,j=0;
-    while(i<n)
-    {
-        if(pat[j]==txt[i])
-        {
-            i++;j++;
-        }
-        if(j==m)
-        {
-            cout<<i-j<<" ";
-            j=lps[j-1];
-        }
-        else if((i<n)&&(pat[j]!=txt[i]))
-        {
-            if(j==0)i++;
-            else j=lps[j-1];
-        }
-    }
-} 
+   string s;cin>>s;
+   vector<ll> lps(s.length());
+   fillLps(s,lps);
+   for(ll i=0;i<s.length();i++)cout<<lps[i]<<" ";
+}
 
 int main()
 {
     solve();
-    return 0;  
+    return 0;
 }
