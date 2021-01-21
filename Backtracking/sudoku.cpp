@@ -1,82 +1,104 @@
 #include<bits/stdc++.h>
+#include<algorithm>
+#define ll long long int
+#define pii pair<ll,ll>
+#define pb push_back
+#define mp make_pair
+#define FAST ios_base::sync_with_stdio(false); cin.tie(NULL);
 using namespace std;
-int N;
-int grid[1005][1005];
 
-bool isSafe(int i,int j,int n)
+#define ALL(x) x.begin(),x.end()
+#define MOD 1000000007
+#define inf INT_MAX
+
+ll add(ll x,ll y){ll res=x+y; return (res>=MOD?res-MOD:res);}
+ll mul(ll x,ll y){ll res=x*y; return (res>=MOD?res%MOD:res);}
+ll sub(ll x,ll y){ll res=x-y; return (res<0?res+MOD:res);}
+
+//Test Input:
+// 4
+// 1 0 3 0
+// 0 0 2 1
+// 0 1 0 2
+// 2 4 0 0
+ll N;
+ll grid[1000][1000];
+
+bool isSafe(ll i,ll j,ll n)
 {
-        for(int k=0;k<N;k++)
-        {
-            if((grid[i][k]==n)||(grid[k][j]==n))
-            return false;
-        }
-        int s=sqrt(N);
-
-        int rs=i-i%s;
-        int cs=j-j%s;
-
-        for(int i=0;i<s;i++)
-        {
-            for(int j=0;j<s;j++)
-            {
-                if(grid[i+rs][j+cs]==n)
-                return false;
-            }
-        }
-        return true;
+    for(ll k=0;k<N;k++)
+    {
+        if(grid[k][j]==n||grid[i][k]==n)return false;
+    }
+    ll s=sqrt(N);
+    ll rs=s*(i/s);
+    ll cs=s*(j/s);
     
+    for(ll p=0;p<s;p++)
+    {
+        for(ll q=0;q<s;q++)
+        {
+            if(grid[rs+p][cs+q]==n)return false;
+        }
+    }
+    return true;
 }
 
-
-bool solve()
+bool sudoku()
 {
-    int i,j;int f=1;
-    for( i=0;i<N;i++)
+    ll f=1;
+    ll i,j;
+    for(i=0;i<N;i++)
     {
-        for( j=0;j<N;j++)
+        for(j=0;j<N;j++)
         {
-            if(grid[i][j]==0){f=-1;break;}
+            if(grid[i][j]==0)
+            {
+                f=-1;break;
+            }
         }
         if(f==-1)break;
     }
-    
-
     if(i==N&&j==N)return true;
-
-    for(int n=1;n<=N;n++)
+    
+    for(ll n=1;n<=N;n++)
     {
         if(isSafe(i,j,n))
         {
             grid[i][j]=n;
-            if(solve())
-            return true;
+            if(sudoku())return true;
             grid[i][j]=0;
         }
     }
     return false;
 }
 
-
-int main()
+void solve()
 {
     cin>>N;
-    for(int i=0;i<N;i++)
+    for(ll i=0;i<N;i++)
     {
-        for(int j=0;j<N;j++)cin>>grid[i][j];
+        for(ll j=0;j<N;j++)
+        cin>>grid[i][j];
     }
-    if(solve()==true)
+    
+    if(sudoku())
     {
-        cout<<"Yes"<<endl;
-        for(int i=0;i<N;i++)
+        for(ll i=0;i<N;i++)
         {
-            for(int j=0;j<N;j++)
+            for(ll j=0;j<N;j++)
             cout<<grid[i][j]<<" ";
             cout<<endl;
         }
     }
     else
     {
-        cout<<"Impossible"<<endl;
+        cout<<"Impossible to find";
     }
-    
+}
+
+int main()
+{
+    solve();
+    return 0;  
 }
