@@ -1,4 +1,5 @@
 1. Two pointer technique used to find pair of elements in array whose sum = x(can be applied only when array is sorted)
-Note: Quick sort worst case TC: n sq while merge and heap has nlogn in worst case too.
+   Note: Quick sort worst case TC: n sq while merge and heap has nlogn in worst case too.
 2. Above point can be applied  on sorted rotated array too.
-3.
+3. Minimum swaps required to bring all elements less than or equal to k together (refer 10-k-together)
+4. 

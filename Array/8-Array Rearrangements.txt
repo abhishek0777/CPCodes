@@ -1,0 +1,21 @@
+1.Rearrange array such that arr[i] >= arr[j] if i is even and arr[i]<=arr[j] if i is odd and j < i
+  link : https://www.geeksforgeeks.org/rearrange-array-arri-arrj-even-arri/
+
+2. I should know how to arrange positive and negative numbers in array,(means partitioning)  refer 9-Array rearrange
+3. Move all zeroes to the end.
+   CODE:
+    ll i=-1;
+    ll j=0;
+    while(j<n)
+    {
+        if(a[j]>0)
+        {
+            i++;
+            swap(a[j],a[i]);
+        }
+        j++;
+    }
+
+4. Link: https://www.geeksforgeeks.org/rearrange-array-arrj-becomes-arri-j/   (Pending)
+
+
