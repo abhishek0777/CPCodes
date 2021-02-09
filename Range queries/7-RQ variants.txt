@@ -1,0 +1,8 @@
+1.)Queries for GCD of all numbers of an array except elements in a given range
+Link: https://www.geeksforgeeks.org/queries-gcd-numbers-array-except-elements-given-range/
+
+Approach:
+An efficient solution is to use two arrays, one as a prefix array and the second one as suffix array. 
+The i-th index of the prefix array will store GCD of the numbers from 1 to i and
+the ith index of suffix array will denote the GCD of the numbers from i to n. 
+
