@@ -31,16 +31,18 @@ ll getSum(ll ql,ll qr,ll l,ll r,ll i)
     ll m=(l+r)/2;
     return getSum(ql,qr,l,m,2*i+1)+getSum(ql,qr,m+1,r,2*i+2);
 }
-void upd(ll l,ll r,ll i,ll si,ll diff)
+
+void upd(ll l,ll r,ll si,ll i,ll val)
 {
-    if(i<l||i>r)return;
-    stree[si]+=diff;
-    if(r>l)
+    if(l==r)
     {
-        ll m=(r+l)/2;
-        upd(l,m,i,2*si+1,diff);
-        upd(m+1,r,i,2*si+2,diff);
+        tree[si]=val;
+        return;
     }
+    ll m=(l+r)/2;
+    if(i<=m)upd(l,m,2*si+1,i,val);
+    else upd(m+1,r,2*si+2,i,val);
+    tree[si]=tree[2*si+1]+tree[2*si+2];
 }
 int main()
 {
@@ -59,8 +61,7 @@ int main()
         else  //upd
         {
             ll i,val;cin>>i>>val;
-            ll diff=val-a[i];
-            upd(0LL,n-1,i,0LL,diff);
+            upd(0LL,n-1,0LL,i,val);
         }
     }
 }
