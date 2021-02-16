@@ -23,7 +23,6 @@ void maxSum(int a[],int n)
         x+=a[i];
         if(x>y)y=x;
         if(x<0)x=0;
-
     }
     cout<<y;
 }

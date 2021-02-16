@@ -1,0 +1,26 @@
+1. Heap is also called as binary heap.
+2. It's a complete binary tree.
+3. what is complete binary tree?
+  Ans : A binary tree in which all levels all fully filled except possibly the last level
+        and all the nodes in the last level are as left as possible.
+4. Heap DS used for heap sort,and to implement priority queues.
+5. If its complete,we can store it in array efficiently,bcx there will be no vacant space(gap).
+6. other advantage is ,it is cache friendly and minimum possible height.
+7. left=2*i+1   right=2*i+2    parent=(i-1)/2
+
+
+MIN HEAP:
+-> complete binary tree
+-> Every node has value smaller than its descendants.
+                10
+               /  \
+             12   13
+            / \ 
+         14   15
+
+
+Maximum number of nodes at height h
+ceil(n/pow(2,h+1))
+
+
+
