@@ -1,0 +1,34 @@
+1. Tree DS used to represent hierarchy of data set
+2. Its a non-linear ds.
+3. Terms in tree DS
+   * node
+   * root
+   * leaf
+   * child
+   * parent
+   * subtree
+   * descendants -all the nodes which are part of subtree whose root is given node
+   * ancestors
+   * degree (no of childrens) 
+4. Applications of tree
+   -> TO represent hierarchial data
+        |-> Organization structure
+        |-> Folder structure
+        |-> XML/HTML content (.JSON objects)
+        |-> In OOP(inheritance)
+   -> Binary search tree
+   -> Binary heap
+   -> B and B+ trees in DBMS(used for indexing)
+   -> Spanning and Shortest path trees in computer networks
+   -> Parse tree and expression tree
+   -> Trie
+   -> SUffix tree(to do fast searches in string)
+   -> BIT
+   -> Segment tree
+5. Tree Traversal
+   BFS(level order)
+   DFS
+    |-> Inorder
+    |-> Pre order
+    |-> Post order
+6.
