@@ -31,4 +31,5 @@
     |-> Inorder
     |-> Pre order
     |-> Post order
-6.
+6. Note that we can construct BT only when inorder traversal is given and one more traversal is also given.
+ 
