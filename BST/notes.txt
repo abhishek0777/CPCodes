@@ -1,0 +1,23 @@
+Binary search tree
+1. All keys are typically distinct
+2. Since items are at different location,like linked list,tree,BST is also not cache friendly.
+3. Like linked list,BST is also linked data structure.
+4. Implemented in C++ as:
+   -> map
+   -> set 
+   -> multimap
+   -> multiset
+5. NOTE: height of BST is not logn, it can be 'n' too.
+   Skew BST has height of O(n)
+6. Iterative solution are more efficient,since they require less space(or constant)
+7.Self balancing tree
+    -> AVL tree(strict in balancing)
+    -> Red black tree(loose in balancing)
+    map,set use red black tree in c++
+8. Application of BST
+   1. To maintain sorted stream of data(or sorted set of data)
+   2. To implement doubly ended priority queue.
+   3. To solve problem like:
+     (a) Count smaller/greater in a stream
+     (b) Floor/ceiling/greater/smaller in a stream
+   

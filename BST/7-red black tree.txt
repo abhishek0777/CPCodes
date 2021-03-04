@@ -1,0 +1,8 @@
+--------------------Red black tree-----------------
+1. Every node is either red or black
+2. root is always black
+3. No two consecutive reds
+4. Number of black nodes from every node to all of its
+   descendents leaves should be same.
+5. Number of nodes on the path from a node to its farthes descendent leaf 
+   should not be more than twice than the number of nodes on the path to the closest descendant leaf

@@ -1,0 +1,21 @@
+---------------------AVL Tree--------------------
+1.It is a BST(for every node,left subtree is smaller and right is greater)
+2. It is balanced(for every node,diff b/w left and right heights does not exceed one)
+Balance factor=|lh-rh|
+
+Insert operation:
+--> Perform normal BST Insert
+--> Traverse all ancestors of the newly inserted node from the node to root
+--> If find an unbalanced node ,check for any of the below cases
+  1. left left
+  2. right right
+  3. left right
+  4. right left
+
+
+Ex. 20,15,5,40,50,18
+
+height of Avl tree: 
+h<c*log2(n+2)+b
+c=1.4405
+b=-1.3277
