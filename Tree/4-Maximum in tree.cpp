@@ -14,7 +14,11 @@ struct node{
     }
 };
 
-void iterative
+void mxBT(node* root)
+{
+    if(root==NULL)return INT_MIN;
+    return max(root->key,max(mxBT(root->left),mxBT(root->right)));
+}
 
 
 
@@ -26,6 +30,6 @@ int main()
     root->left->left=new node(40);
     root->left->right=new node(50);
     
-    iterativeInorder(root);
+    cout<<maxBT(root);
     
 }

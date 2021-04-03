@@ -43,6 +43,7 @@ void iterativePreorder(node* root)
         cout<<curr->key<<" ";
         st.pop();
         
+        
         if(curr->right!=NULL)st.push(curr->right);
         if(curr->left!=NULL)st.push(curr->left);
     }

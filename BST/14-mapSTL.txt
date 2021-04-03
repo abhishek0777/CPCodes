@@ -1,0 +1,24 @@
+1.Every item of map is a pair
+2. two ways to insert
+map<int,int> m;
+m.insert({10,20});
+m[5]=100;
+
+for(auto &x:m)cout<<x.first<<" "<<x.second<<endl;
+
+o/p: 5 100
+    10 20
+
+if we have 
+m.insert({10,30})
+then this line will completely ignored and remains {10,20}
+cout<<m[30]<<endl;   //it insert key=30 wid value=0,so size of map increase
+
+since we already have m[10]=30
+we can change value of 10 using
+m[10]=300      //   m.at(10)=300
+but insert will not work
+  
+At operator ,it does same work as [] operator
+but there is small diff,[] can insert if key is not present but m.at(key) can give out of range exception if key is not present
+
