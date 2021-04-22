@@ -1,0 +1,4 @@
+1.Segment tree size can be : 2*2^(ceil(logn))-1
+2.Size of tree is upper bounded by 4n
+3.So in code practice,we can create segment tree array of size 4n,to avoid mistake and for safe side
+4.
