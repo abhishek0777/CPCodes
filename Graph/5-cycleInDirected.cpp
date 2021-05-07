@@ -12,7 +12,10 @@ bool dfs(vector<ll> adj[],ll s)
     recSt[s]=true;
     for(ll v:adj[s])
     {
-        if( (!used[v])&&(dfs(adj,v)) )return true;
+        if(!used[v])
+        {
+            if(dfs(adj,v))return true;
+        }
         else if(recSt[v])return true;
     }
     recSt[s]=false;

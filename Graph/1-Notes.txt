@@ -1,0 +1,41 @@
+1) Tree DS represent hierarchy,i.e parent child relationship,while graph represent friendship relationship,where there is random connection b/w any two vertices.
+2) Directed graphs are used in web crawlers(like one page has link of second page ,but second page cannot have link to first page)
+3) Undirected graph used in social media networking
+4) Walk(Path): Walk is a seq of vertices that we get by following the edges
+  ex: v1 v2 v3 v2
+5) Path(simple path): Path is a walk without repeatition of vertices
+
+6) Applications of BFS 
+    => Shortest path in an unweighted graph
+    => Crawlers in search engine
+    => Peer to peer network(like bit torrent)
+    => Social networking search
+    => In garbage collection(cheney algorithm)
+    => Cycle detection(can use both bfs or dfs)
+    => ford fulkerson algorithm(max flow algo)
+    => broadcasting
+7) Application of DFS 
+    => Cycle detection
+    => Topological sort 
+    => Strongly connected components(kosaraju and tarjan)
+    => SOlving maze and similar puzzles
+    => Path finding
+
+8)Imp for coding purpose:
+    Cycle detection in undirected,we have to store parent of node
+    while in directed,we dont have to store parent
+9) Cons: Dijkstra can't handle negative wt edges 
+10) Dijksta can handle directed as well as undirected,also graph may contain cycles too.
+
+Code IMP:
+* If we have unweighted undirected graph,we can use BFS directly to find shortest path
+* If we have directed acyclic graph(DAG),we can use topological sort to find shortest path in O(V+E)
+
+11) Bellman ford is bypass the limitation of dijkstra which is negative wt edges,it can handle that too.
+    IT is DP algorithm,use bottom up manner
+    IDEA:we first find shortest path that are of one edge length.Then shortest paths that are of  two edge length and so on.
+    Algorithm: We have to relax all edges (V-1) times
+12) It not only handles -ve wt edges,it can report negative wt cycles too.
+
+**********SCC********
+13) Kosaraju algorithm used to find SCC in directed graph.
