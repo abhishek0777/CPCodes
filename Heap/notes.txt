@@ -7,7 +7,8 @@
 5. If its complete,we can store it in array efficiently,bcx there will be no vacant space(gap).
 6. other advantage is ,it is cache friendly and minimum possible height.
 7. left=2*i+1   right=2*i+2    parent=(i-1)/2
-
+8. What is the advantage of having complete binary tree in binary heap?
+Ans : So that we can store binary heap in array without having extra space in b/w elements.
 
 MIN HEAP:
 -> complete binary tree

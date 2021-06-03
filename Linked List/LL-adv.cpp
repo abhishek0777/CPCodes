@@ -553,7 +553,7 @@ node* pairwiseSwap(node* head)
     prv = curr;
     curr->next->next = prv;
     curr = nxt;
-  } 5
+  } 
   prv->next = curr;
   return head;
 }

@@ -31,7 +31,7 @@ Code IMP:
 * If we have unweighted undirected graph,we can use BFS directly to find shortest path
 * If we have directed acyclic graph(DAG),we can use topological sort to find shortest path in O(V+E)
 
-11) Bellman ford is bypass the limitation of dijkstra which is negative wt edges,it can handle that too.
+11) Bellman ford  bypass the limitation of dijkstra which is negative wt edges,it can handle that too.
     IT is DP algorithm,use bottom up manner
     IDEA:we first find shortest path that are of one edge length.Then shortest paths that are of  two edge length and so on.
     Algorithm: We have to relax all edges (V-1) times
