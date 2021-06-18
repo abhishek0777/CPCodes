@@ -9,39 +9,59 @@ Algorithm:
 2. Swap max element with last element.
 3. And then heapify remaining array(size of array decrease by 1)
 */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long int
+#define FAST ios_base::sync_with_stdio(false); cin.tie(NULL);
 using namespace std;
 
-void maxHeapify(ll i,ll a[],ll sz)
+#define MOD 1000000007
+/*
+   notes
+
+*/
+
+void heapify(int i, int a[], int n)
 {
-    ll lt=2*i+1;
-    ll rt=2*i+2;
-    ll maxIdx=i;
-    if(lt<sz&&(a[lt]>a[maxIdx]))maxIdx=lt;
-    if(rt<sz&&(a[rt]>a[maxIdx]))maxIdx=rt;
-    if(maxIdx==i)return;
-    swap(a[i],a[maxIdx]);
-    maxHeapify(maxIdx,a,sz);
+   int lt = 2 * i + 1, rt = 2 * i + 2, largest = i;
+   if (lt < n && a[lt] > a[largest])largest = lt;
+   if (rt < n && a[rt] > a[largest])largest = rt;
+   if (largest != i) {
+      swap(a[i], a[largest]);
+      heapify(largest, a, n);
+   }
 }
-void buildMaxHeap(ll a[],ll sz)
+
+void buildMaxHeap(int a[], int n)
 {
-    for(ll i=(sz-2)/2;i>=0;i--)
-    {
-        maxHeapify(i,a,sz);
-    }
+   for (int i = (n - 2) / 2; i >= 0; i--) {
+      heapify(i, a, n);
+   }
 }
-int main()
+
+void heapSort(int a[], int n)
 {
-    ll n;cin>>n;
-    ll a[n];
-    for(ll i=0;i<n;i++)cin>>a[i];
-    buildMaxHeap(a,n);
-    
-    for(ll i=n-1;i>=1;i--)
-    {
-        swap(a[0],a[i]);
-        maxHeapify(0,a,i);
-    }
-    for(ll i=0;i<n;i++)cout<<a[i]<<" ";
+   for (int i = n - 1; i >= 0; i--) {
+      swap(a[i], a[0]);
+      heapify(0, a, i);
+   }
+}
+void solve()
+{
+   int n; cin >> n;
+   int a[n];
+   for (int i = 0; i < n; i++)cin >> a[i];
+   buildMaxHeap(a, n);
+   heapSort(a, n);
+   for (int i = 0; i < n; i++)cout << a[i] << " ";
+
+}
+
+
+
+int main() {
+   FAST
+   ll t = 1;
+   cin >> t;
+   while (t--)solve();
+   return 0;
 }
